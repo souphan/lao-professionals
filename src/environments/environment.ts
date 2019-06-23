@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyCtlUUfEB4WWtt6qb-52YG8vFcBes_rNvw",
-    authDomain: "ideapool-124ba.firebaseapp.com",
-    databaseURL: "https://ideapool-124ba.firebaseio.com",
-    projectId: "ideapool-124ba",
+    apiKey: "AIzaSyC63JUyBGNr5uxTsxyfa-WkX5jRgzGYKDk",
+    authDomain: "lao-professionals.firebaseapp.com",
+    databaseURL: "https://lao-professionals.firebaseio.com",
+    projectId: "lao-professionals",
     storageBucket: "",
-    messagingSenderId: "282806948554",
-    appId: "1:282806948554:web:7b23f05f14d04b03"
+    messagingSenderId: "144841870718",
+    appId: "1:144841870718:web:f2d1903d402ff587"
   }
 };
 
