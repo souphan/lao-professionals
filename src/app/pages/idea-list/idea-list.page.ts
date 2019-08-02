@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class IdeaListPage implements OnInit {
  
-  ideas: Observable<Idea[]>;
+  professionals: Observable<any[]>;
  
   constructor(private ideaService: IdeaService) { }
  
   ngOnInit() {
-    this.ideas = this.ideaService.getIdeas();
+    this.professionals = this.ideaService.getIdeas();
   }
 }

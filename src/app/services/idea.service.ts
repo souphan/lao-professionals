@@ -13,23 +13,25 @@ export interface Idea {
   providedIn: 'root'
 })
 export class IdeaService {
-  private ideas: Observable<Idea[]>;
+  private ideas: Observable<any[]>;
   private ideaCollection: AngularFirestoreCollection<Idea>;
  
   constructor(private afs: AngularFirestore) {
-    this.ideaCollection = this.afs.collection<Idea>('ideas');
+    this.ideaCollection = this.afs.collection<any>('professionals');
     this.ideas = this.ideaCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
+          console.log(data, 'getting data');
           const id = a.payload.doc.id;
+          console.log(id, 'getting id');
           return { id, ...data };
         });
       })
     );
   }
  
-  getIdeas(): Observable<Idea[]> {
+  getIdeas(): Observable<any[]> {
     return this.ideas;
   }
  

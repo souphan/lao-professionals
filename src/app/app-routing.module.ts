@@ -11,8 +11,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: './pages/idea-list/idea-list.module#IdeaListPageModule' },
-  { path: 'idea', loadChildren: './pages/idea-details/idea-details.module#IdeaDetailsPageModule' },
-  { path: 'idea/:id', loadChildren: './pages/idea-details/idea-details.module#IdeaDetailsPageModule' },
+  { path: 'pro', loadChildren: './pages/idea-details/idea-details.module#IdeaDetailsPageModule' },
+  { path: 'pro/:id', loadChildren: './pages/idea-details/idea-details.module#IdeaDetailsPageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
 ];
 
 @NgModule({
