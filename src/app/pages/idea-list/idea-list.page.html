@@ -12,7 +12,7 @@
   </ion-fab>
  
   <ion-list>
-    <ion-item button [routerLink]="['/pro', pro.id.t]" *ngFor="let pro of (professionals | async)">
+    <ion-item button [routerLink]="['/pro', i]" *ngFor="let pro of (professionals | async); let i = index">
       {{ pro?.gsxcategory?.t }}
 
       {{ pro?.gsxorganizationname?.t }}
