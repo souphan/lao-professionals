@@ -15,7 +15,12 @@ export interface Professional {
   gsxstreetaddress: { t: string},
   gsxwebsite: { t: string},
   title: { t: string},
-  id: number
+  id: string
+}
+
+export interface Idea {
+  gsxcategory: { t: string},
+  gsxcity: { t: string},
 }
 
 @Injectable({
@@ -57,7 +62,7 @@ export class IdeaService {
   }
  
   updatePro(pro: Professional): Promise<void> {
-    return this.proCollection.doc(pro.id).update({ name: pro.name, notes: pro.notes });
+    return this.proCollection.doc(pro.id).update({ name: pro.gsxcontactname, email: pro.gsxemail });
   }
  
   deletePro(id: string): Promise<void> {

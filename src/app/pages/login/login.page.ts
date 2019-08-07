@@ -8,7 +8,7 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginPage implements OnInit {
 
-  private todo : FormGroup;
+  todo : FormGroup;
 
   constructor( private formBuilder: FormBuilder ) {
     this.todo = this.formBuilder.group({
