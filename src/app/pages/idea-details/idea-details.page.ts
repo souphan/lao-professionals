@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IdeaService, Idea } from 'src/app/services/idea.service';
+import { IdeaService, Professional } from 'src/app/services/idea.service';
 import { ToastController } from '@ionic/angular';
  
 @Component({
@@ -10,11 +10,8 @@ import { ToastController } from '@ionic/angular';
 })
 export class IdeaDetailsPage implements OnInit {
  
-  idea: Idea = {
-    name: '',
-    notes: ''
-  };
- 
+  pro: Professional;
+  
   constructor(private activatedRoute: ActivatedRoute, private ideaService: IdeaService,
     private toastCtrl: ToastController, private router: Router) { }
  
@@ -23,14 +20,14 @@ export class IdeaDetailsPage implements OnInit {
   ionViewWillEnter() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     if (id) {
-      this.ideaService.getIdea(id).subscribe(idea => {
-        this.idea = idea;
+      this.ideaService.getProfessional(id).subscribe(pro => {
+        this.pro = pro;
       });
     }
   }
  
-  addIdea() {
-    this.ideaService.addIdea(this.idea).then(() => {
+  addPro() {
+    this.ideaService.addPro(this.pro).then(() => {
       this.router.navigateByUrl('/');
       this.showToast('Idea added');
     }, err => {
@@ -38,8 +35,8 @@ export class IdeaDetailsPage implements OnInit {
     });
   }
  
-  deleteIdea() {
-    this.ideaService.deleteIdea(this.idea.id).then(() => {
+  deletePro() {
+    this.ideaService.deletePro(this.pro.id).then(() => {
       this.router.navigateByUrl('/');
       this.showToast('Idea deleted');
     }, err => {
@@ -47,8 +44,8 @@ export class IdeaDetailsPage implements OnInit {
     });
   }
  
-  updateIdea() {
-    this.ideaService.updateIdea(this.idea).then(() => {
+  updatePro() {
+    this.ideaService.updatePro(this.pro).then(() => {
       this.showToast('Idea updated');
     }, err => {
       this.showToast('There was a problem updating your idea :(');

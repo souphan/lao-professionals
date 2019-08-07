@@ -3,57 +3,64 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument,
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-export interface Idea {
-  id?: string,
-  name: string,
-  notes: string
+export interface Professional {
+  gsxcategory: { t: string},
+  gsxcity: { t: string},
+  gsxcontactname: { t: string},
+  gsxemail: { t: string},
+  gsxorganizationname: { t: string},
+  gsxphone: { t: string},
+  gsxpostalcode: { t: string},
+  gsxstate: { t: string},
+  gsxstreetaddress: { t: string},
+  gsxwebsite: { t: string},
+  title: { t: string},
+  id: number
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class IdeaService {
-  private ideas: Observable<any[]>;
-  private ideaCollection: AngularFirestoreCollection<Idea>;
+  private professionals: Observable<any[]>;
+  private proCollection: AngularFirestoreCollection<Professional>;
  
   constructor(private afs: AngularFirestore) {
-    this.ideaCollection = this.afs.collection<any>('professionals');
-    this.ideas = this.ideaCollection.snapshotChanges().pipe(
+    this.proCollection = this.afs.collection<any>('professionals');
+    this.professionals = this.proCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
-          console.log(data, 'getting data');
           const id = a.payload.doc.id;
-          console.log(id, 'getting id');
           return { id, ...data };
         });
       })
     );
   }
  
-  getIdeas(): Observable<any[]> {
-    return this.ideas;
+  getProfessionals(): Observable<any[]> {
+    return this.professionals;
   }
  
-  getIdea(id: string): Observable<Idea> {
-    return this.ideaCollection.doc<Idea>(id).valueChanges().pipe(
+  getProfessional(id: string): Observable<Professional> {
+    return this.proCollection.doc<Professional>(id).valueChanges().pipe(
       take(1),
-      map(idea => {
-        idea.id = id;
-        return idea
+      map(pro => {
+        pro.id = id;
+        return pro
       })
     );
   }
  
-  addIdea(idea: Idea): Promise<DocumentReference> {
-    return this.ideaCollection.add(idea);
+  addPro(pro: Professional): Promise<DocumentReference> {
+    return this.proCollection.add(pro);
   }
  
-  updateIdea(idea: Idea): Promise<void> {
-    return this.ideaCollection.doc(idea.id).update({ name: idea.name, notes: idea.notes });
+  updatePro(pro: Professional): Promise<void> {
+    return this.proCollection.doc(pro.id).update({ name: pro.name, notes: pro.notes });
   }
  
-  deleteIdea(id: string): Promise<void> {
-    return this.ideaCollection.doc(id).delete();
+  deletePro(id: string): Promise<void> {
+    return this.proCollection.doc(id).delete();
   }
 }

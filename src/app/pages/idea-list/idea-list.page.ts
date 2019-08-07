@@ -14,6 +14,6 @@ export class IdeaListPage implements OnInit {
   constructor(private ideaService: IdeaService) { }
  
   ngOnInit() {
-    this.professionals = this.ideaService.getIdeas();
+    this.professionals = this.ideaService.getProfessionals();
   }
 }
