@@ -12,12 +12,13 @@
   </ion-fab>
  
   <ion-list>
-    <ion-item button [routerLink]="['/pro', i]" *ngFor="let pro of (professionals | async); let i = index">
+    <ion-item button [routerLink]="['/pro', pro.id]" *ngFor="let pro of (professionals | async); let i = index">
       {{ pro?.gsxcategory?.t }}
-
       {{ pro?.gsxorganizationname?.t }}
       {{ pro?.gsxcontactname?.t }}
-      
+      <ion-thumbnail slot="start">
+        <ion-img [src]="pro?.imageUrl?.t "></ion-img>
+      </ion-thumbnail>
     </ion-item>
   </ion-list>
 </ion-content>

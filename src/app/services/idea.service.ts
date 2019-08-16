@@ -15,7 +15,9 @@ export interface Professional {
   gsxstreetaddress: { t: string},
   gsxwebsite: { t: string},
   title: { t: string},
-  id: string
+  id: string,
+  image: string,
+  imageUrl: string
 }
 
 export interface Idea {
@@ -29,7 +31,7 @@ export interface Idea {
 export class IdeaService {
   private professionals: Observable<any[]>;
   private proCollection: AngularFirestoreCollection<Professional>;
- 
+
   constructor(private afs: AngularFirestore) {
     this.proCollection = this.afs.collection<any>('professionals');
     this.professionals = this.proCollection.snapshotChanges().pipe(
@@ -37,7 +39,10 @@ export class IdeaService {
         return actions.map(a => {
           const data = a.payload.doc.data();
           const id = a.payload.doc.id;
+          data.id = id;
           return { id, ...data };
+
+         // const data = a.payload.doc;
         });
       })
     );

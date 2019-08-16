@@ -5,7 +5,7 @@ export const environment = {
     authDomain: "lao-professionals.firebaseapp.com",
     databaseURL: "https://lao-professionals.firebaseio.com",
     projectId: "lao-professionals",
-    storageBucket: "",
+    storageBucket: "lao-professionals.appspot.com",
     messagingSenderId: "144841870718",
     appId: "1:144841870718:web:f2d1903d402ff587"
   }

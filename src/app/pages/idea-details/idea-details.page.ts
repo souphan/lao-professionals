@@ -2,30 +2,49 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IdeaService, Professional } from 'src/app/services/idea.service';
 import { ToastController } from '@ionic/angular';
- 
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { map, finalize } from 'rxjs/operators';
+
 @Component({
   selector: 'app-idea-details',
   templateUrl: './idea-details.page.html',
   styleUrls: ['./idea-details.page.scss'],
 })
 export class IdeaDetailsPage implements OnInit {
- 
   pro: Professional;
-  
-  constructor(private activatedRoute: ActivatedRoute, private ideaService: IdeaService,
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadState: Observable<string>;
+  uploadProgress: Observable<number>;
+  downloadURL: Observable<string>;
+
+  constructor(private route: ActivatedRoute, private ideaService: IdeaService,
+    private afStorage: AngularFireStorage,
     private toastCtrl: ToastController, private router: Router) { }
  
-  ngOnInit() { }
+  ngOnInit() { 
+  }
  
+  upload(event) {
+    const id = Math.random().toString(36).substring(2);
+    this.ref = this.afStorage.ref(id);
+    this.task = this.ref.put(event.target.files[0]);
+    this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+    this.uploadProgress = this.task.percentageChanges();
+    this.task.snapshotChanges().pipe(
+      finalize(() => this.downloadURL = this.ref.getDownloadURL() )).subscribe();
+  }
+
   ionViewWillEnter() {
-    let id = this.activatedRoute.snapshot.paramMap.get('id');
+    let id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.ideaService.getProfessional(id).subscribe(pro => {
         this.pro = pro;
       });
     }
   }
- 
+
   addPro() {
     this.ideaService.addPro(this.pro).then(() => {
       this.router.navigateByUrl('/');

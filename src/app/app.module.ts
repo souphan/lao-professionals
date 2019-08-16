@@ -12,8 +12,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule }   from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
  
 
 @NgModule({
@@ -26,7 +27,8 @@ import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/fi
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   providers: [
     StatusBar,
