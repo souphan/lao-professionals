@@ -14,6 +14,7 @@ import { FormsModule }   from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { environment } from '../environments/environment';
  
 
@@ -28,7 +29,8 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ImagePicker
   ],
   providers: [
     StatusBar,
