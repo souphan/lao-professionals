@@ -5,6 +5,11 @@
 </ion-header>
  
 <ion-content>
+  <ion-searchbar
+    showcancelbutton=""
+    (ioninput)="filterList($event)"
+  ></ion-searchbar>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button routerLink="/pro">
       <ion-icon name="add"></ion-icon>
