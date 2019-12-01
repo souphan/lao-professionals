@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IdeaService, Idea } from 'src/app/services/idea.service';
+import { IdeaService, Professional } from 'src/app/services/idea.service';
 import { Observable } from 'rxjs';
  
 @Component({

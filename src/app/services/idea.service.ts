@@ -18,11 +18,6 @@ export interface Professional {
   id: string
 }
 
-export interface Idea {
-  gsxcategory: { t: string},
-  gsxcity: { t: string},
-}
-
 @Injectable({
   providedIn: 'root'
 })
