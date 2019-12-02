@@ -4,7 +4,7 @@ import { IdeaService, Professional } from 'src/app/services/idea.service';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { map, finalize } from 'rxjs/operators';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { ImagePicker } from '@ionic-native/image-picker';
 import { LoadingController, ToastController, AlertController } from '@ionic/angular';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 
